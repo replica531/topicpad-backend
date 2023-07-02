@@ -1,14 +1,10 @@
-FROM golang:1.19-alpine
+FROM golang:1.19
 
 WORKDIR /go/src
 COPY ./api .
 
-RUN apk upgrade --update && \
-    apk --no-cache add git
-
-RUN go get -u github.com/gin-gonic/gin && \
-    go get github.com/jinzhu/gorm && \
-    go get github.com/go-sql-driver/mysql
+RUN go get -u gorm.io/gorm && \
+    go get -u gorm.io/driver/mysql
 
 RUN go get -u github.com/cosmtrek/air && \
     go build -o /go/bin/air github.com/cosmtrek/air

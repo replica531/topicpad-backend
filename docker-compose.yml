@@ -13,6 +13,9 @@ services:
     tty: true
     depends_on:
       - mysql
+    networks:
+      - mysql-net
+      - api-net
 
   mysql:
     image: mysql:8.0.28
@@ -28,7 +31,13 @@ services:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
+    networks:
+      - mysql-net
 
 volumes:
   db-data:
     driver: local
+
+networks:
+  mysql-net:  # APIサーバ<=>MySQL間用ネットワーク
+  api-net: # クライアント<=>APIサーバ間用ネットワーク

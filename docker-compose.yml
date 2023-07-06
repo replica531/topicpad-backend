@@ -19,8 +19,8 @@ services:
     container_name: topicpad-db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: go_database
-      MYSQL_USER: go_test
+      MYSQL_DATABASE: topicpad_database
+      MYSQL_USER: topicpad_test
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'
     volumes:

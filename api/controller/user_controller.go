@@ -9,7 +9,6 @@ import (
 
 type UserController struct{}
 
-// Index action: GET /users
 func (pc UserController) Index(c *gin.Context) {
 	var u repository.UserRepository
 	p, err := u.GetAll()
@@ -17,9 +16,18 @@ func (pc UserController) Index(c *gin.Context) {
 		c.AbortWithStatus(404)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(200, p)
+		c.JSON(200, gin.H{"users": p})
 	}
 }
 
-
-
+func (pc UserController) Show(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var u repository.UserRepository
+	p, err := u.GetByID(id)
+	if err != nil {
+		c.AbortWithStatus(404)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
+		c.JSON(200, gin.H{"user": p})
+	}
+}

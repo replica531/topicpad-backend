@@ -4,7 +4,7 @@ down:
 	docker-compose down --remove-orphans
 build:
 	docker-compose build
-restrt:
+restart:
 	@make down
 	@make up
 ps:

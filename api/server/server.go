@@ -27,6 +27,7 @@ func router() *gin.Engine {
     },
     // アクセスを許可したいHTTPメソッド(以下の例だとPUTやDELETEはアクセスできません)
     AllowMethods: []string{
+				"PUT",
         "POST",
         "GET",
         "OPTIONS",
@@ -68,7 +69,7 @@ func router() *gin.Engine {
 		ctrl := controller.UserController{}
 		users.GET("", ctrl.Index)
 		users.GET("/:id", ctrl.Show)
-		// users.POST("/", ctrl.UserCreate)
+		users.POST("", ctrl.Create)
 		// users.PUT("/:id", ctrl.UserUpdate)
 		// users.DELETE("/:id", ctrl.UserDelete)
 	}

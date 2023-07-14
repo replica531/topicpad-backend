@@ -60,4 +60,7 @@ func Close() {
 
 func autoMigration() {
 	db.Migrator().CreateTable(&model.User{})
+	// db.Migrator().CreateTable(&model.Topic{})
+	db.Migrator().DropTable(&model.Topic{})
+	fmt.Println(db.Migrator().CurrentDatabase())
 }

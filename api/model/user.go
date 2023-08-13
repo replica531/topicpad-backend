@@ -6,7 +6,9 @@ import (
 
 type User struct {
 	gorm.Model
-	Auth0ID string `json:"auth0_id" binding:"required" gorm:"uniqueIndex:idx_auth0_id;size:100"`
+	Name string `json:"name" binding:"required" gorm:"uniqueIndex:idx_user_name;size:100;unique;not null"`
+	Email string `json:"email" binding:"required" gorm:"uniqueIndex:idx_user_email;size:100;unique;not null"`
+	Password string `json:"password" binding:"required" gorm:"size:100;not null"`
 	Kind int `json:"kind" binding:"required" gorm:"default:0"`
 	Topics []Topic
 }

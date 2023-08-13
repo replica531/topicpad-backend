@@ -64,12 +64,19 @@ func router() *gin.Engine {
 		})
 	})
 
+	auth := router.Group("/auth")
+	{
+		ctrl := controller.AuthController{}
+		auth.POST("/signup", ctrl.Signup)
+		// auth.POST("/login", ctrl.Login)
+		// auth.GET("/logout", ctrl.Logout)
+	}
+
 	users := router.Group("/users")
 	{
 		ctrl := controller.UserController{}
 		users.GET("", ctrl.Index)
 		users.GET("/:id", ctrl.Show)
-		users.POST("", ctrl.Create)
 		// users.PUT("/:id", ctrl.UserUpdate)
 		// users.DELETE("/:id", ctrl.UserDelete)
 	}

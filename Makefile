@@ -17,4 +17,5 @@ mysql:
 api:
 	docker-compose exec api bash
 mysql-login:
-	docker-compose exec mysql bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+	docker-compose exec mysql bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE' && use topicpad_database
+	# show tables;

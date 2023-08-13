@@ -11,5 +11,5 @@ type User struct {
 	Topics []Topic
 }
 
-// 0: member
-// 10: admin
+// 0: admin
+// 1: member

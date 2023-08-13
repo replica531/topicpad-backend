@@ -37,12 +37,12 @@ func (_ UserRepository) GetByID(auth0ID string) (UserScan, error) {
 
 func (_ UserRepository) Create(auth0ID string, kind int) (UserScan, error) {
 	db := db.GetDB()
-	var u UserScan
 	user := User{Auth0ID: auth0ID, Kind: kind}
 	if err := db.Create(&user).Error; err != nil {
 		return UserScan{}, err
 	}
 	fmt.Println("User作成成功!")
+	var u UserScan
 	if err := db.Table("users").Where("auth0_id = ?", auth0ID).First(&u).Error
 		err != nil {
 		return UserScan{}, err
